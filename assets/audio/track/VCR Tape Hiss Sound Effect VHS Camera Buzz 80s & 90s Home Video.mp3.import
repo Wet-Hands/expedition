@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://nyrwg8nj4ilh"
+path="res://.godot/imported/VCR Tape Hiss Sound Effect VHS Camera Buzz 80s & 90s Home Video.mp3-c2c27ad54efa9c637b506631b4cbe61d.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/track/VCR Tape Hiss Sound Effect VHS Camera Buzz 80s & 90s Home Video.mp3"
+dest_files=["res://.godot/imported/VCR Tape Hiss Sound Effect VHS Camera Buzz 80s & 90s Home Video.mp3-c2c27ad54efa9c637b506631b4cbe61d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

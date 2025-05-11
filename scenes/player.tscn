@@ -1,0 +1,206 @@
+[gd_scene load_steps=15 format=3 uid="uid://bxmdvxy6se3c7"]
+
+[ext_resource type="Script" uid="uid://b5d803mfysnwc" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="FontFile" uid="uid://bekvgcgp32tpu" path="res://assets/fonts/Better VCR 9.0.1.ttf" id="2_dqkch"]
+[ext_resource type="Shader" uid="uid://hvgqr2a7u3wh" path="res://assets/shaders/cam.gdshader" id="2_g2els"]
+[ext_resource type="AudioStream" uid="uid://7lsbh75mknny" path="res://assets/audio/sfx/FootstepsStoneDirt3.ogg" id="3_qhqgy"]
+[ext_resource type="Shader" uid="uid://cbuuj74kvdujv" path="res://assets/shaders/fisheye.gdshader" id="4_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://nyrwg8nj4ilh" path="res://assets/audio/track/VCR Tape Hiss Sound Effect VHS Camera Buzz 80s & 90s Home Video.mp3" id="6_tuyoq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlg0r"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_tuyoq"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 2
+Label/font_sizes/font_size = 14
+Label/fonts/font = ExtResource("2_dqkch")
+Label/styles/normal = SubResource("StyleBoxFlat_qlg0r")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuyoq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhqgy"]
+shader = ExtResource("2_g2els")
+shader_parameter/wiggle = 0.03
+shader_parameter/wiggle_speed = 25.0
+shader_parameter/smear = 0.75
+shader_parameter/blur_samples = 15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
+shader = ExtResource("4_qlg0r")
+shader_parameter/aspect = 1.0
+shader_parameter/distortion = 1.0
+shader_parameter/radius = 1.07
+shader_parameter/alpha = 1.0
+shader_parameter/crop = 0.943
+shader_parameter/crop_color = Color(0, 0, 0, 0)
+shader_parameter/crop_feathering = 0.1
+shader_parameter/channel_offset = 0.005
+shader_parameter/noise_strength = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqkch"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
+material = SubResource("StandardMaterial3D_dqkch")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "ray")]
+wall_min_slide_angle = 0.0
+script = ExtResource("1_3vyb7")
+head = NodePath("Head")
+cam = NodePath("Head/Camera3D")
+ray = NodePath("Head/Camera3D/RayCast3D")
+
+[node name="InvLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InvLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -137.0
+offset_top = -40.0
+offset_right = 137.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PositionContainer2" type="HBoxContainer" parent="InvLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="InvLayer/VBoxContainer/PositionContainer2"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_tuyoq")
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "SPEED BOOST x4"
+horizontal_alignment = 1
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 278.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlanetContainer" type="HBoxContainer" parent="HudLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HudLayer/VBoxContainer/PlanetContainer"]
+layout_mode = 2
+theme = SubResource("Theme_tuyoq")
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "PLANET: XAVIX-4"
+
+[node name="PositionContainer" type="HBoxContainer" parent="HudLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HudLayer/VBoxContainer/PositionContainer"]
+layout_mode = 2
+theme = SubResource("Theme_tuyoq")
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "LOCATION:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HudLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -272.0
+offset_bottom = 48.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlanetContainer" type="HBoxContainer" parent="HudLayer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HudLayer/VBoxContainer2/PlanetContainer"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_tuyoq")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuyoq")
+text = "HEALTH: 100/100"
+
+[node name="PositionContainer" type="HBoxContainer" parent="HudLayer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HudLayer/VBoxContainer2/PositionContainer"]
+layout_mode = 2
+theme = SubResource("Theme_tuyoq")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuyoq")
+text = "ENERGY: 100/100"
+horizontal_alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="HudLayer/VBoxContainer2/PositionContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HudLayer/VBoxContainer2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="VHS" type="ColorRect" parent="HudLayer"]
+material = SubResource("ShaderMaterial_qhqgy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Fisheye" type="ColorRect" parent="HudLayer"]
+visible = false
+material = SubResource("ShaderMaterial_tuyoq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_u8vuu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_3vyb7")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -4)
+
+[node name="Footstep" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.89884, 0)
+stream = ExtResource("3_qhqgy")
+volume_db = -12.0
+unit_size = 1.0
+max_db = 1.0
+pitch_scale = 0.75
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tuyoq")
+volume_db = 5.0
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
