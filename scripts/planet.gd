@@ -5,6 +5,8 @@ var tree_count = 300
 var tree_scene = preload("res://scenes/tree.tscn")
 
 func _ready() -> void: #Called when the node enters the scene tree for the first time.
+	$Player.position = %Raycast.get_collision_point()
+	$Player.position.y += 2
 	$AudioStreamPlayer.play()
 	#$Terrainy.terrain_material.albedo_color = colors.pick_random()
 
@@ -15,12 +17,11 @@ func generate_trees():
 		if %Raycast.is_colliding():
 			var ray_point = %Raycast.get_collision_point() #- %Raycast.get_collision_normal()
 			$Mesh.position = ray_point
-			if ray_point.y > -1:
-				var inst = tree_scene.instantiate()
-				inst.position = ray_point
-				inst.rotation.y = randf_range(0, 360)
-				%Trees.add_child(inst)
-				print("tree planted")
+			var inst = tree_scene.instantiate()
+			inst.position = ray_point
+			inst.rotation.y = randf_range(0, 360)
+			%Trees.add_child(inst)
+			print("tree planted")
 		print(%Trees.get_child_count())
 		await get_tree().create_timer(.0001).timeout
 				
