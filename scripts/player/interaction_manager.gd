@@ -15,3 +15,7 @@ func _on_timer_timeout() -> void:
 	else:
 		%cLabel.text = ""
 	$Timer.start()
+
+
+func _on_fire_timer_timeout() -> void:
+	pass # Replace with function body.
