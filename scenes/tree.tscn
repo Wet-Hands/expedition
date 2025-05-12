@@ -1,59 +1,12 @@
-[gd_scene load_steps=15 format=4 uid="uid://clhuxf3v4eo1k"]
+[gd_scene load_steps=11 format=4 uid="uid://clhuxf3v4eo1k"]
 
-[ext_resource type="Texture2D" uid="uid://l80bojegmmtm" path="res://assets/trees/fern_3_fern_3.png" id="1_avsvi"]
+[ext_resource type="Script" uid="uid://buvi6vr7m1ruq" path="res://scripts/tree.gd" id="1_qd6xs"]
 [ext_resource type="Texture2D" uid="uid://cgyvp4kb2poww" path="res://assets/trees/tree_5_pine_bark_1_winter.png" id="2_viusy"]
 [ext_resource type="Texture2D" uid="uid://bq3wb6mrfq2s2" path="res://assets/trees/tree_5_branch_1.png" id="3_qd6xs"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ict6q"]
-top_radius = 0.25
-bottom_radius = 0.25
-height = 5.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ict6q"]
 height = 5.0
 radius = 0.25
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ine37"]
-resource_name = "fern_3"
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-albedo_texture = ExtResource("1_avsvi")
-texture_filter = 2
-texture_repeat = false
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_sbq3w"]
-_surfaces = [{
-"aabb": AABB(-0.739234, -1.06175, -1.82416, 1.67103, 1.81372, 2.18227),
-"format": 34896613377,
-"index_count": 18,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkA"),
-"name": "fern_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 12,
-"vertex_data": PackedByteArray("vkYAACfnAAAogErZdTsAACiAStkn5wAAvkYAAHU7AAD+/1jhw+YAAE0yknQBPwAATTKSdMPmAAD//1jhAT8AAOTZRATBvAAAAAD//z1DAAARQf/O//8AANOYQzUAAAAA")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_vb0we"]
-resource_name = "fern_3_fern_3"
-_surfaces = [{
-"aabb": AABB(-0.739234, -1.06175, -1.82416, 1.67103, 1.81372, 2.18227),
-"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAAAA/////wAA/////wAAAAAAAP////8AAP////8AAAAA"),
-"format": 34896613399,
-"index_count": 18,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkA"),
-"material": SubResource("StandardMaterial3D_ine37"),
-"name": "fern_3",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 12,
-"vertex_data": PackedByteArray("vkYAACfn9M8ogErZdTv0zyiAStkn5/TPvkYAAHU79M/+/1jhw+YS8U0yknQBPxLxTTKSdMPmEvH//1jhAT8S8eTZRATBvJjbAAD//z1DmNsRQf/O//+Y29OYQzUAAJjb4tg4zuLYOM7i2DjO4tg4zg2PhkcNj4ZHDY+GRw2Phkf2xsnt9sbJ7fbGye32xsnt")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_sbq3w")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_do3hq"]
 resource_name = "pine_bark_1_winter"
@@ -138,21 +91,11 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g27ub")
 
 [node name="Tree" type="StaticBody3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-visible = false
-mesh = SubResource("CylinderMesh_ict6q")
+script = ExtResource("1_qd6xs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("CylinderShape3D_ict6q")
-
-[node name="fern_3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
-visible = false
-mesh = SubResource("ArrayMesh_vb0we")
-skeleton = NodePath("")
 
 [node name="tree_5" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.998723, -0.0505303, 2.20875e-09, 0, -4.37114e-08, -1, 0.0505303, -0.998723, 4.36556e-08, 0, -0.25, 0)
@@ -161,6 +104,5 @@ skeleton = NodePath("")
 
 [node name="tree_5_leaves" type="MeshInstance3D" parent="tree_5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80982e-06, 0, 0)
-visible = false
 mesh = SubResource("ArrayMesh_18mvg")
 skeleton = NodePath("")

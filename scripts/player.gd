@@ -31,9 +31,6 @@ func _input(event: InputEvent) -> void:
 			else: #If Fullscreen Already
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED) #Make Windowed
 				Global.fullscreen = false #Fullscreen is NOT Active
-		if Input.is_action_just_pressed("action1"):
-			if ray.is_colliding():
-				print(ray.get_collision_point())
 
 func _process(delta: float) -> void:
 	$HudLayer/VBoxContainer/PositionContainer/Label.text = "LOCATION: " + str(Vector3i(self.position))
