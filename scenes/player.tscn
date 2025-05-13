@@ -1,15 +1,43 @@
-[gd_scene load_steps=28 format=3 uid="uid://bxmdvxy6se3c7"]
+[gd_scene load_steps=29 format=3 uid="uid://bxmdvxy6se3c7"]
 
 [ext_resource type="Script" uid="uid://b5d803mfysnwc" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="FontFile" uid="uid://bekvgcgp32tpu" path="res://assets/fonts/Better VCR 9.0.1.ttf" id="2_dqkch"]
 [ext_resource type="Script" uid="uid://dpjxjf36qb8xo" path="res://scripts/player/interaction_manager.gd" id="2_fjrip"]
 [ext_resource type="Shader" uid="uid://hvgqr2a7u3wh" path="res://assets/shaders/cam.gdshader" id="2_g2els"]
-[ext_resource type="AudioStream" uid="uid://7lsbh75mknny" path="res://assets/audio/sfx/FootstepsStoneDirt3.ogg" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://ch8nsa062ldbv" path="res://assets/audio/sfx/fire/flamethrower.wav" id="3_d2wvv"]
+[ext_resource type="AudioStream" uid="uid://7lsbh75mknny" path="res://assets/audio/sfx/footstep/FootstepsStoneDirt3.ogg" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://i52l0x4kqljq" path="res://assets/texture/metal/Metal128.png" id="5_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://csbper1okd52p" path="res://assets/texture/metal/Metal128_Metalness.png" id="6_d2wvv"]
 [ext_resource type="AudioStream" uid="uid://nyrwg8nj4ilh" path="res://assets/audio/track/VCR Tape Hiss Sound Effect VHS Camera Buzz 80s & 90s Home Video.mp3" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dl4cr0mtjwcn2" path="res://assets/texture/metal/Metal128_NormalGL.png" id="7_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://2l5tcm0lixrq" path="res://assets/texture/metal/Metal128_Roughness.png" id="8_jej6c"]
+
+[sub_resource type="Animation" id="Animation_d2wvv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Head/Camera3D/Arms/Left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.388, -0.415, 0.157)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Head/Camera3D/Arms/Left/GPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_y4r1p"]
 resource_name = "fire"
@@ -39,33 +67,21 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true, false]
 }
-
-[sub_resource type="Animation" id="Animation_d2wvv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Head/Camera3D/Arms/Left:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.388, -0.415, 0.157)]
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Head/Camera3D/Arms/Left/AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 1.1,
+"start_offset": 0.1,
+"stream": ExtResource("3_d2wvv")
+}],
+"times": PackedFloat32Array(0.2)
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Head/Camera3D/Arms/Left/GPUParticles3D:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3v2ag"]
 _data = {
@@ -230,6 +246,7 @@ theme_override_colors/font_color = Color(1, 1, 0, 1)
 text = "PLANET: XAVIX-4"
 
 [node name="PositionContainer" type="HBoxContainer" parent="HudLayer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -354,6 +371,8 @@ amount = 50
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_smehm")
 draw_pass_1 = SubResource("QuadMesh_y4r1p")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Camera3D/Arms/Left"]
 
 [node name="Footstep" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.89884, 0)
