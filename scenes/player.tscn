@@ -1,11 +1,77 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxmdvxy6se3c7"]
+[gd_scene load_steps=28 format=3 uid="uid://bxmdvxy6se3c7"]
 
 [ext_resource type="Script" uid="uid://b5d803mfysnwc" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="FontFile" uid="uid://bekvgcgp32tpu" path="res://assets/fonts/Better VCR 9.0.1.ttf" id="2_dqkch"]
 [ext_resource type="Script" uid="uid://dpjxjf36qb8xo" path="res://scripts/player/interaction_manager.gd" id="2_fjrip"]
 [ext_resource type="Shader" uid="uid://hvgqr2a7u3wh" path="res://assets/shaders/cam.gdshader" id="2_g2els"]
 [ext_resource type="AudioStream" uid="uid://7lsbh75mknny" path="res://assets/audio/sfx/FootstepsStoneDirt3.ogg" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://i52l0x4kqljq" path="res://assets/texture/metal/Metal128.png" id="5_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://csbper1okd52p" path="res://assets/texture/metal/Metal128_Metalness.png" id="6_d2wvv"]
 [ext_resource type="AudioStream" uid="uid://nyrwg8nj4ilh" path="res://assets/audio/track/VCR Tape Hiss Sound Effect VHS Camera Buzz 80s & 90s Home Video.mp3" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://dl4cr0mtjwcn2" path="res://assets/texture/metal/Metal128_NormalGL.png" id="7_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://2l5tcm0lixrq" path="res://assets/texture/metal/Metal128_Roughness.png" id="8_jej6c"]
+
+[sub_resource type="Animation" id="Animation_y4r1p"]
+resource_name = "fire"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Head/Camera3D/Arms/Left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.388341, -0.414813, 0.156759), Vector3(0.43, -0.285, -0.274), Vector3(0.43, -0.285, -0.274), Vector3(0.388341, -0.414813, 0.156759)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Head/Camera3D/Arms/Left/GPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_d2wvv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Head/Camera3D/Arms/Left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.388, -0.415, 0.157)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Head/Camera3D/Arms/Left/GPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3v2ag"]
+_data = {
+&"RESET": SubResource("Animation_d2wvv"),
+&"fire": SubResource("Animation_y4r1p")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlg0r"]
 bg_color = Color(0, 0, 0, 1)
@@ -28,13 +94,30 @@ shader_parameter/smear = 0.75
 shader_parameter/blur_samples = 15
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqkch"]
+albedo_texture = ExtResource("5_y4r1p")
+metallic = 1.0
+metallic_texture = ExtResource("6_d2wvv")
+roughness_texture = ExtResource("8_jej6c")
+normal_enabled = true
+normal_texture = ExtResource("7_3v2ag")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 material = SubResource("StandardMaterial3D_dqkch")
+radial_segments = 8
+rings = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1ej7"]
+albedo_texture = ExtResource("5_y4r1p")
+metallic = 1.0
+metallic_texture = ExtResource("6_d2wvv")
+roughness_texture = ExtResource("8_jej6c")
+normal_enabled = true
+normal_texture = ExtResource("7_3v2ag")
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tuyoq"]
+material = SubResource("StandardMaterial3D_f1ej7")
 radius = 0.125
 height = 1.0
 radial_segments = 4
@@ -43,7 +126,7 @@ rings = 2
 [sub_resource type="Gradient" id="Gradient_tuyoq"]
 colors = PackedColorArray(0.709804, 0.454902, 0, 1, 1, 1, 0.129412, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_fjrip"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y4r1p"]
 gradient = SubResource("Gradient_tuyoq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smehm"]
@@ -58,9 +141,9 @@ linear_accel_min = -2.23517e-06
 linear_accel_max = 0.999998
 scale_min = 0.05
 scale_max = 0.5
-color_initial_ramp = SubResource("GradientTexture1D_fjrip")
+color_initial_ramp = SubResource("GradientTexture1D_y4r1p")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ur7pv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2wvv"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -73,9 +156,10 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_y4r1p"]
-material = SubResource("StandardMaterial3D_ur7pv")
+material = SubResource("StandardMaterial3D_d2wvv")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "ray")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 wall_min_slide_angle = 0.0
 script = ExtResource("1_3vyb7")
 head = NodePath("Head")
@@ -90,6 +174,11 @@ ray = NodePath("../Head/Camera3D/RayCast3D")
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InteractionManager"]
+libraries = {
+&"": SubResource("AnimationLibrary_3v2ag")
+}
 
 [node name="InvLayer" type="CanvasLayer" parent="."]
 
@@ -252,13 +341,15 @@ target_position = Vector3(0, 0, -3)
 collide_with_areas = true
 
 [node name="Arms" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(0.995356, 0, 0.0962627, 0, 1, 0, -0.0962627, 0, 0.995356, 0, 0, 0)
 
 [node name="Left" type="MeshInstance3D" parent="Head/Camera3D/Arms"]
-transform = Transform3D(1, 0, 0, 0, 0.133986, 0.990983, 0, -0.990983, 0.133986, 0.43, -0.285, -0.274)
+transform = Transform3D(1, 2.98023e-08, 2.79397e-09, 0, 0.133986, 0.990983, 0, -0.990983, 0.133986, 0.388, -0.415, 0.157)
 mesh = SubResource("CapsuleMesh_tuyoq")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Head/Camera3D/Arms/Left"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527082, -0.00684443)
+emitting = false
 amount = 50
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_smehm")

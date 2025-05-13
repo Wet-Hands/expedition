@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://clhuxf3v4eo1k"]
+[gd_scene load_steps=16 format=4 uid="uid://clhuxf3v4eo1k"]
 
 [ext_resource type="Script" uid="uid://buvi6vr7m1ruq" path="res://scripts/tree.gd" id="1_qd6xs"]
 [ext_resource type="Texture2D" uid="uid://cgyvp4kb2poww" path="res://assets/trees/tree_5_pine_bark_1_winter.png" id="2_viusy"]
@@ -48,7 +48,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_slexd")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ake3r"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_viusy"]
 resource_name = "branch_1"
 transparency = 2
 alpha_scissor_threshold = 0.5
@@ -72,7 +72,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_18mvg"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_5yujg"]
 resource_name = "tree_5_tree_5_leaves"
 _surfaces = [{
 "aabb": AABB(-1.72775, -1.64605, -6.90713, 3.77555, 3.55259, 6.35586),
@@ -80,7 +80,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 552,
 "index_data": PackedByteArray("AAABAAIAAQAAAAMAAwAAAAQAAQADAAUABgAHAAgACQAHAAYACgALAAwADQALAAoADgAPABAAEQAPAA4AEgATABQAFQATABIAFgAXABgAGQAXABYAGgAbABwAHQAbABoAHgAfACAAIQAfAB4AIgAjACQAJQAjACIAJgAnACgAKQAnACYAKgArACwALQArACoALgAvADAAMQAvAC4AMgAzADQANQAzADIANgA3ADgAOQA3ADYAOgA7ADwAPQA7ADoAPgA/AEAAQQA/AD4AQgBDAEQARQBDAEIARgBHAEgASQBHAEYASgBLAEwATQBLAEoATgBPAFAAUQBPAE4AUgBTAFQAVQBTAFIAVgBXAFgAWQBXAFYAWgBbAFwAXQBbAFoAXgBfAGAAYQBfAF4AYgBjAGQAZQBjAGIAZgBnAGgAaQBnAGYAagBrAGwAbQBrAGoAbgBvAHAAcQBvAG4AcgBzAHQAdQBzAHIAdgB3AHgAeQB3AHYAegB7AHwAfQB7AHoAfgB/AIAAgQB/AH4AggCDAIQAhQCDAIIAhgCHAIgAiQCHAIYAigCLAIwAjQCLAIoAjgCPAJAAkQCPAI4AkgCTAJQAlQCTAJIAlgCXAJgAmQCXAJYAmgCbAJwAnQCbAJoAngCfAKAAoQCfAJ4AogCjAKQApQCjAKIApgCnAKgAqQCnAKYAqgCrAKwArQCrAKoArgCvALAAsQCvAK4AsgCzALQAtQCzALIAtgC3ALgAuQC3ALYAugC7ALwAvQC7ALoAvgC/AMAAwQC/AL4AwgDDAMQAxQDDAMIAxgDHAMgAyQDHAMYAygDLAMwAzQDLAMoAzgDPANAA0QDPAM4A0gDTANQA1QDTANIA1gDXANgA2QDXANYA2gDbANwA3QDbANoA3gDfAOAA4QDfAN4A4gDjAOQA5QDjAOIA5gDnAOgA6QDnAOYA6gDrAOwA7QDrAOoA7gDvAPAA8QDvAO4A8gDzAPQA9QDzAPIA9gD3APgA+QD3APYA+gD7APwA/QD7APoA/gD/AAABAQH/AP4AAgEDAQQBBQEDAQIBBgEHAQgBCQEHAQYBCgELAQwBDQELAQoBDgEPARABEQEPAQ4BEgETARQBFQETARIBFgEXARgBGQEXARYBGgEbARwBHQEbARoBHgEfASABIQEfAR4BIgEjASQBJQEjASIBJgEnASgBKQEnASYBKgErASwBLQErASoBLgEvATABMQEvAS4BMgEzATQBNQEzATIBNgE3ATgBOQE3ATYBOgE7ATwBPQE7AToBPgE/AUABQQE/AT4BQgFDAUQBRQFDAUIBRgFHAUgBSQFHAUYBSgFLAUwBTQFLAUoBTgFPAVABUQFPAU4BUgFTAVQBVQFTAVIBVgFXAVgBWQFXAVYBWgFbAVwBXQFbAVoBXgFfAWABYQFfAV4BYgFjAWQBZQFjAWIBZgFnAWgBaQFnAWYBagFrAWwBbQFrAWoB"),
-"material": SubResource("StandardMaterial3D_ake3r"),
+"material": SubResource("StandardMaterial3D_viusy"),
 "name": "branch_1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -89,6 +89,41 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g27ub")
+
+[sub_resource type="Gradient" id="Gradient_viusy"]
+colors = PackedColorArray(0.709804, 0.454902, 0, 1, 1, 1, 0.129412, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fjrip"]
+gradient = SubResource("Gradient_viusy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qd6xs"]
+angle_min = 1.07288e-05
+angle_max = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 0.999998
+scale_min = 0.25
+scale_max = 0.75
+color_initial_ramp = SubResource("GradientTexture1D_fjrip")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18mvg"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.484035, 0.189164, 4.81308e-08, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_dmmp0"]
+material = SubResource("StandardMaterial3D_18mvg")
 
 [node name="Tree" type="StaticBody3D"]
 script = ExtResource("1_qd6xs")
@@ -104,5 +139,19 @@ skeleton = NodePath("")
 
 [node name="tree_5_leaves" type="MeshInstance3D" parent="tree_5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80982e-06, 0, 0)
-mesh = SubResource("ArrayMesh_18mvg")
+mesh = SubResource("ArrayMesh_5yujg")
 skeleton = NodePath("")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.236337, -0.00684443)
+emitting = false
+amount = 200
+lifetime = 1.25
+process_material = SubResource("ParticleProcessMaterial_qd6xs")
+draw_pass_1 = SubResource("QuadMesh_dmmp0")
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
