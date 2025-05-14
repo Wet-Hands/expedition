@@ -33,7 +33,8 @@ func _input(event: InputEvent) -> void:
 				Global.fullscreen = false #Fullscreen is NOT Active
 
 func _process(delta: float) -> void:
-	$HudLayer/VBoxContainer/PositionContainer/Label.text = "LOCATION: " + str(Vector3i(self.position))
+	#$HudLayer/VBoxContainer/PositionContainer/Label.text = "LOCATION: " + str(Vector3i(self.position))
+	pass
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -60,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	headbob_time += delta * (velocity.length()) * float(is_on_floor())
 	cam.transform.origin = headbob(headbob_time)
-	$HudLayer/VBoxContainer2/PositionContainer/Label.text = "ENERGY: " + str(int(energy)) + "/100"
+	%EnergyLabel.text = "ENERGY: " + str(int(energy)) + "/100"
 
 var headbob_time = 0.0
 var headbob_freq = 2

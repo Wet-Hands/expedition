@@ -6,8 +6,9 @@ var tree_scene = preload("res://scenes/tree.tscn")
 
 func _ready() -> void: #Called when the node enters the scene tree for the first time.
 	$Player.position = %Raycast.get_collision_point()
-	$Player.position.y += 2
+	$Player.position.y += 3
 	$AudioStreamPlayer.play()
+	stasis()
 	#$Terrainy.terrain_material.albedo_color = colors.pick_random()
 
 func generate_trees():
@@ -33,3 +34,7 @@ func _on_terrainy_terrain_generation_finished() -> void:
 
 func _on_audio_stream_player_finished() -> void:
 	$AudioStreamPlayer.play()
+
+var grass = ["res://assets/texture/grass/grass_ground.png", "res://assets/texture/rock/Rock2.png", "res://assets/texture/rock/Rock1.png"]
+func stasis():
+	$Terrainy.terrain_material.set_shader_parameter("albedo", load(grass[Global.phase]))

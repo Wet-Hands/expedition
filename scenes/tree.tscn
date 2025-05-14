@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://clhuxf3v4eo1k"]
+[gd_scene load_steps=17 format=4 uid="uid://clhuxf3v4eo1k"]
 
 [ext_resource type="Script" uid="uid://buvi6vr7m1ruq" path="res://scripts/tree.gd" id="1_qd6xs"]
 [ext_resource type="Texture2D" uid="uid://cgyvp4kb2poww" path="res://assets/trees/tree_5_pine_bark_1_winter.png" id="2_viusy"]
@@ -115,7 +115,11 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_dmmp0"]
 material = SubResource("StandardMaterial3D_18mvg")
 
-[node name="Tree" type="StaticBody3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qd6xs"]
+height = 5.0
+radius = 3.0
+
+[node name="Tree" type="StaticBody3D" groups=["tree"]]
 script = ExtResource("1_qd6xs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -150,4 +154,12 @@ stream = ExtResource("4_qd6xs")
 volume_db = 5.0
 unit_size = 2.0
 
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7914, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_qd6xs")
+disabled = true
+
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

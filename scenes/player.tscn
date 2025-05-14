@@ -175,7 +175,6 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_d2wvv")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "ray")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 wall_min_slide_angle = 0.0
 script = ExtResource("1_3vyb7")
 head = NodePath("Head")
@@ -235,26 +234,21 @@ offset_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PlanetContainer" type="HBoxContainer" parent="HudLayer/VBoxContainer"]
+[node name="PlanetLabel" type="Label" parent="HudLayer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="HudLayer/VBoxContainer/PlanetContainer"]
-layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
 theme = SubResource("Theme_tuyoq")
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 text = "PLANET: XAVIX-4"
 
-[node name="PositionContainer" type="HBoxContainer" parent="HudLayer/VBoxContainer"]
-visible = false
+[node name="TimeLabel" type="Label" parent="HudLayer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="HudLayer/VBoxContainer/PositionContainer"]
-layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
 theme = SubResource("Theme_tuyoq")
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-text = "LOCATION:"
+text = "YEAR: 2165"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HudLayer"]
 anchors_preset = 1
@@ -283,7 +277,8 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="HudLayer/VBoxContainer2/PositionContainer"]
+[node name="EnergyLabel" type="Label" parent="HudLayer/VBoxContainer2/PositionContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_tuyoq")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
